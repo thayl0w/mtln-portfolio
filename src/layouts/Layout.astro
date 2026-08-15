@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import { site } from '../data/portfolio';
+import CredentialViewer from '../components/CredentialViewer.astro';
+import ProjectGallery from '../components/ProjectGallery.astro';
+import PreviewProtect from '../components/PreviewProtect.astro';
+import EnvelopeIntro from '../components/EnvelopeIntro.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.title, description = site.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <meta name="theme-color" content="#111214" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      try {
+        if (sessionStorage.getItem('portfolioIntroCompleted') === 'true') {
+          document.documentElement.classList.add('intro-completed');
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-surface font-sans text-navy antialiased">
+    <div class="site-background" aria-hidden="true"></div>
+    <EnvelopeIntro />
+    <slot />
+    <CredentialViewer />
+    <ProjectGallery />
+    <PreviewProtect />
+  </body>
+</html>

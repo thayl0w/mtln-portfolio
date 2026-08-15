@@ -1,0 +1,39 @@
+---
+import { experience } from '../data/portfolio';
+---
+
+<section id="experience" class="section-fade py-10 md:py-14">
+  <div class="section-container">
+    <div class="mb-7 max-w-3xl space-y-3 md:mb-8">
+      <p class="section-eyebrow">Experience</p>
+      <h2 class="section-heading">Professional and leadership experience</h2>
+      <p class="section-subheading">
+        Roles focused on execution discipline, communication, and delivery.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      {
+        experience.map((role) => (
+          <article class="card-surface p-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <p class="text-sm font-semibold text-foreground">
+                {role.title} — {role.company}
+              </p>
+              <p class="text-xs uppercase tracking-[0.2em] text-subtle">{role.period}</p>
+            </div>
+            <p class="mt-1 text-xs text-muted-dark">{role.location}</p>
+            <ul class="mt-4 space-y-2.5">
+              {role.bullets.map((bullet) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-muted">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,206 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { getMarketingWindows, getMarketingWindow, relatedWindows } from '../../../data/marketing';
+import { site } from '../../../data/portfolio';
+
+export function getStaticPaths() {
+  return getMarketingWindows().map((window) => ({
+    params: { category: window.category.id, brand: window.brandId },
+  }));
+}
+
+const window = getMarketingWindow(Astro.params.category || '', Astro.params.brand || '')!;
+const related = relatedWindows(window.brandId, window.category.id);
+const layout = window.category.id;
+const galleryItems = window.deliverables.filter((item) => item.kind === 'gallery' && item.assets?.length);
+const documents = window.deliverables.filter((item) => item.kind === 'document');
+const initialVisible = 999; // Complete gallery — no arbitrary social-media limit.
+---
+
+<Layout title={`${window.title} | ${site.name}`} description={window.summary}>
+  <Navbar revealImmediately />
+
+  <main class="pb-16 pt-28 md:pt-36">
+    <div class="section-container">
+      <p class="section-eyebrow">{window.category.title}</p>
+      <h1 class="mt-3 max-w-4xl font-serif text-[clamp(1.8rem,4vw,3rem)] font-semibold text-foreground">
+        {window.title}
+      </h1>
+      <p class="mt-4 max-w-3xl text-base text-muted">{window.summary}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href={`/marketing/${window.category.id}`} class="btn-outline">All {window.category.title}</a>
+        <a href={`/marketing/brand/${window.brandId}`} class="btn-outline">{window.brand} windows</a>
+      </div>
+
+      {
+        documents.length ? (
+          <section class="mt-12 space-y-5">
+            {documents.map((item) => {
+              const isPdf = Boolean(item.href && item.href.toLowerCase().endsWith('.pdf'));
+              const isDoc = Boolean(item.href && /\.docx?$/i.test(item.href));
+              return (
+                <article class="card-surface flex flex-col overflow-hidden md:flex-row">
+                  {item.preview ? (
+                    <img
+                      src={item.preview}
+                      alt=""
+                      class="preview-protected aspect-[16/10] w-full object-cover object-top md:w-72"
+                      loading="lazy"
+                      draggable="false"
+                    />
+                  ) : (
+                    <div class="flex aspect-[16/10] w-full items-center justify-center bg-surface-muted md:w-72">
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">{item.format}</p>
+                    </div>
+                  )}
+                  <div class="flex flex-1 flex-col p-5">
+                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold">{item.format}</p>
+                    <h2 class="mt-2 text-xl font-semibold text-foreground">{item.title}</h2>
+                    <p class="mt-2 text-sm text-muted">{item.summary}</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span class="rounded-full border border-border px-2.5 py-1 text-xs text-muted">{tag}</span>
+                      ))}
+                    </div>
+                    {(isPdf || isDoc) && item.href ? (
+                      <button
+                        type="button"
+                        class="btn-outline mt-5 w-fit"
+                        data-document={item.href}
+                        data-title={item.title}
+                      >
+                        View preview
+                      </button>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
+          </section>
+        ) : null
+      }
+
+      {
+        galleryItems.map((item) => {
+          const assets = item.assets || [];
+          const isSocial = layout === 'social';
+          const isFunnelOrWeb = layout === 'funnels' || layout === 'websites';
+          return (
+            <section class="mt-12" data-gallery-section>
+              {item.group || galleryItems.length > 1 ? (
+                <div class="mb-5">
+                  <h2 class="font-serif text-2xl font-semibold text-foreground">{item.group || item.title}</h2>
+                  <p class="mt-1 text-sm text-muted">
+                    {assets.length} graphic{assets.length === 1 ? '' : 's'}
+                  </p>
+                </div>
+              ) : null}
+
+              {isFunnelOrWeb ? (
+                <ol class="grid gap-5 md:grid-cols-2">
+                  {assets.map((asset, index) => (
+                    <li>
+                      <button
+                        type="button"
+                        class="card-surface w-full overflow-hidden text-left"
+                        data-project-gallery={item.id}
+                        data-gallery-index={String(index)}
+                      >
+                        <img
+                          src={asset.src}
+                          alt={asset.alt}
+                          class:list={[
+                            'preview-protected w-full object-cover object-top',
+                            layout === 'websites' ? 'aspect-[16/10]' : 'aspect-[16/10]',
+                          ]}
+                          loading="lazy"
+                          draggable="false"
+                        />
+                        <p class="px-4 py-3 text-sm font-medium text-foreground">
+                          {index + 1}. {asset.caption || item.title}
+                        </p>
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <div
+                  class:list={[
+                    'grid gap-4',
+                    isSocial ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-3',
+                  ]}
+                  data-asset-grid
+                >
+                  {assets.map((asset, index) => (
+                    <button
+                      type="button"
+                      class:list={[
+                        'card-surface overflow-hidden text-left',
+                        index >= initialVisible && 'hidden',
+                      ]}
+                      data-project-gallery={item.id}
+                      data-gallery-index={String(index)}
+                      data-asset-item
+                    >
+                      <img
+                        src={asset.src}
+                        alt={asset.alt}
+                        class:list={[
+                          'preview-protected w-full bg-surface-muted object-contain p-3',
+                          isSocial ? 'aspect-[4/5]' : 'aspect-[16/10] object-cover object-top p-0',
+                        ]}
+                        loading="lazy"
+                        draggable="false"
+                      />
+                      <p class="px-4 py-3 text-sm font-medium text-foreground">{asset.caption || item.title}</p>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {assets.length > initialVisible && !isFunnelOrWeb ? (
+                <button type="button" class="btn-outline mt-6" data-load-more>
+                  Load more ({assets.length - initialVisible} remaining)
+                </button>
+              ) : null}
+            </section>
+          );
+        })
+      }
+
+      {
+        related.length ? (
+          <section class="mt-16 border-t border-border pt-10">
+            <h2 class="font-serif text-2xl font-semibold text-foreground">Related work</h2>
+            <p class="mt-2 max-w-2xl text-sm text-muted">
+              Other {window.brand} project windows. Connected, not nested.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              {related.map((item) => (
+                <a href={item.href} class="btn-outline">
+                  {item.category.title}
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null
+      }
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-load-more]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const section = button.closest('[data-gallery-section]');
+      section?.querySelectorAll<HTMLElement>('[data-asset-item]').forEach((item) => {
+        item.classList.remove('hidden');
+      });
+      button.remove();
+    });
+  });
+</script>

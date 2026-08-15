@@ -1,0 +1,70 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { getMarketingBrand, getMarketingBrands, getMarketingWindows } from '../../../data/marketing';
+import { site } from '../../../data/portfolio';
+
+export function getStaticPaths() {
+  return getMarketingBrands().map((brand) => ({
+    params: { brand: brand.id },
+  }));
+}
+
+const brand = getMarketingBrand(Astro.params.brand || '')!;
+const windows = getMarketingWindows().filter((window) => window.brandId === brand.id);
+---
+
+<Layout title={`${brand.brand} | ${site.name}`} description={`Separate project windows for ${brand.brand}.`}>
+  <Navbar revealImmediately />
+
+  <main class="pb-16 pt-28 md:pt-36">
+    <div class="section-container">
+      <p class="section-eyebrow">Brand</p>
+      <h1 class="mt-3 font-serif text-[clamp(1.8rem,4vw,3rem)] font-semibold text-foreground">
+        {brand.brand}
+      </h1>
+      <p class="mt-4 max-w-3xl text-base text-muted">
+        {windows.length} separate project window{windows.length === 1 ? '' : 's'} — each type of work stays its own body of work.
+      </p>
+      <a href="/#marketing" class="btn-outline mt-6">Back to marketing work</a>
+
+      <div class="mt-12 grid gap-5 md:grid-cols-2">
+        {
+          windows.map((window) => (
+            <a href={window.href} class="card-surface group flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+              {window.preview ? (
+                <img
+                  src={window.preview}
+                  alt=""
+                  class="preview-protected aspect-[16/10] w-full object-cover object-top"
+                  loading="lazy"
+                  draggable="false"
+                />
+              ) : (
+                <div class="flex aspect-[16/10] items-center justify-center bg-surface-muted">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">{window.category.title}</p>
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5">
+                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold">
+                  {window.category.title}
+                </p>
+                <h2 class="mt-2 font-serif text-2xl font-semibold text-foreground group-hover:text-gold-light">
+                  {window.title}
+                </h2>
+                <p class="mt-2 flex-1 text-sm text-muted">{window.summary}</p>
+                <p class="mt-4 text-xs uppercase tracking-[0.14em] text-subtle">
+                  {window.assetCount} asset{window.assetCount === 1 ? '' : 's'}
+                </p>
+                <span class="mt-4 text-sm font-semibold text-gold-light">Open project window →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

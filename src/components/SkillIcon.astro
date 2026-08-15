@@ -1,0 +1,79 @@
+---
+import type { Skill } from '../data/portfolio';
+import {
+  assetIconMap,
+  brandIconMap,
+  brandLuminance,
+  getSimpleIcon,
+  type AssetIconId,
+  type BrandIconId,
+} from '../lib/skillIcons';
+
+interface Props {
+  skill: Skill;
+  class?: string;
+}
+
+const { skill, class: className = 'h-10 w-10' } = Astro.props;
+
+const isBrand = skill.iconType === 'brand' && skill.id in brandIconMap;
+const isAsset = skill.iconType === 'asset' && skill.id in assetIconMap;
+
+let brandColor = '#1c5ca8';
+let path = '';
+let needsDarkPlate = false;
+
+if (isBrand) {
+  const icon = getSimpleIcon(brandIconMap[skill.id as BrandIconId]);
+  if (icon) {
+    path = icon.path;
+    brandColor = `#${icon.hex}`;
+    // Pale brand colors (JS yellow, Mailchimp yellow, etc.) need a dark plate
+    // so the monochrome mark stays readable on light skill cards.
+    needsDarkPlate = brandLuminance(brandColor) > 0.72;
+  }
+}
+
+const assetSrc = isAsset ? assetIconMap[skill.id as AssetIconId] : '';
+---
+
+{
+  isBrand && path && (
+    needsDarkPlate ? (
+      <span
+        class:list={[className, 'inline-flex items-center justify-center rounded-lg p-[12%]']}
+        style={`background-color: #1a1a1a; color: ${brandColor}`}
+        role="img"
+        aria-label={skill.name}
+      >
+        <svg viewBox="0 0 24 24" class="h-full w-full" aria-hidden="true">
+          <path fill="currentColor" d={path} />
+        </svg>
+      </span>
+    ) : (
+      <svg
+        class={className}
+        viewBox="0 0 24 24"
+        role="img"
+        aria-label={skill.name}
+        style={`color: ${brandColor}`}
+      >
+        <path fill="currentColor" d={path} />
+      </svg>
+    )
+  )
+}
+
+{
+  isAsset && assetSrc && (
+    <img
+      src={assetSrc}
+      alt={skill.name}
+      class={`${className} object-contain`}
+      width="40"
+      height="40"
+      loading="lazy"
+      decoding="async"
+    />
+  )
+}

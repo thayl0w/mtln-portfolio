@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import MarketingWork from '../components/MarketingWork.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
+import Certifications from '../components/Certifications.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout>
+  <Navbar />
+  <div id="portfolio-content" class="portfolio-content--hidden" aria-hidden="true">
+    <main><Hero /><MarketingWork /><Skills /><Projects /><About /><Experience /><Education /><Certifications /><Contact /></main>
+    <Footer />
+  </div>
+</Layout>

@@ -1,0 +1,129 @@
+---
+import { site, socialLinks } from '../data/portfolio';
+import ResumePreviewButton from './ResumePreviewButton.astro';
+---
+
+<section id="contact" class="section-fade py-10 md:py-14">
+  <div class="section-container">
+    <div class="mb-7 max-w-3xl space-y-3 md:mb-8">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-heading">Let's build something useful.</h2>
+      <p class="section-subheading">
+        Open to digital marketing, marketing automation, funnel, growth, and web-system work where strategy and implementation need to connect.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+      <form id="contact-form" class="card-surface space-y-5 p-6" action="#" method="POST">
+        <div>
+          <label for="name" class="mb-2 block text-sm font-medium text-foreground">Name</label>
+          <input type="text" id="name" name="name" required class="form-input" placeholder="Your name" />
+        </div>
+        <div>
+          <label for="email" class="mb-2 block text-sm font-medium text-foreground">Email</label>
+          <input type="email" id="email" name="email" required class="form-input" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label for="message" class="mb-2 block text-sm font-medium text-foreground">Message</label>
+          <textarea id="message" name="message" rows="5" required class="form-input resize-none" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full sm:w-auto">
+          Send Message
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+          </svg>
+        </button>
+        <p id="form-status" class="hidden text-sm text-accent"></p>
+      </form>
+
+      <div class="flex flex-col gap-6">
+        <div class="card-surface p-6">
+          <h3 class="text-lg font-semibold text-foreground">Get in Touch</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted">
+            Freelance, full-time, or a single project — email is the fastest way to start.
+          </p>
+
+          <div class="mt-6 space-y-4">
+            <a
+              href={`mailto:${site.email}`}
+              class="flex items-center gap-3 text-sm text-muted transition-colors hover:text-accent"
+            >
+              <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </span>
+              {site.email}
+            </a>
+            <div class="flex items-center gap-3 text-sm text-muted">
+              <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </span>
+              {site.location}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-surface p-6">
+          <h3 class="text-lg font-semibold text-foreground">Connect</h3>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {
+              socialLinks.map((link) => (
+                <a
+                  href={link.href}
+                  target={link.icon !== 'email' ? '_blank' : undefined}
+                  rel={link.icon !== 'email' ? 'noopener noreferrer' : undefined}
+                  class="btn-outline"
+                >
+                  {link.icon === 'linkedin' && (
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.127 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                    </svg>
+                  )}
+                  {link.icon === 'github' && (
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.695-1.23-2.28-.42-.48-1.155-.165-1.155-.165-.63.405-.015.42-.015.42.615.045 1.155.63 1.155.63.54.93 1.41.66 1.755.51.06-.39.24-.66.435-.81-1.5-.165-3.075-.75-3.075-3.33 0-.735.27-1.335.705-1.805-.075-.165-.315-.81.075-1.665 0 0 .585-.18 1.92.69.555-.15 1.155-.225 1.755-.225.6 0 1.2.075 1.755.225 1.335-.87 1.92-.69 1.92-.69.39.855.15 1.5.075 1.665.435.47.705 1.07.705 1.805 0 2.595-1.59 3.165-3.09 3.33.24.21.465.615.465 1.245 0 .9-.015 1.62-.015 1.845 0 .315.225.69.84.57A8.997 8.997 0 0012 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"></path>
+                    </svg>
+                  )}
+                  {link.icon === 'email' && (
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                  )}
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <ResumePreviewButton class="btn-secondary flex-1 justify-center" />
+          <a href={site.resumeUrl} class="btn-outline flex-1 justify-center" download>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (status) {
+      status.textContent = 'Thanks! Connect your form to a service like Formspree or Netlify Forms to receive messages.';
+      status.classList.remove('hidden');
+    }
+    form.reset();
+  });
+</script>

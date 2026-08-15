@@ -1,0 +1,65 @@
+---
+import { about, site } from '../data/portfolio';
+---
+
+<section id="about" class="section-fade py-10 md:py-14">
+  <div class="section-container">
+    <div class="mb-7 max-w-3xl space-y-3 md:mb-8">
+      <p class="section-eyebrow">How I work</p>
+      <h2 class="section-heading">Strategy, execution, then optimization</h2>
+      <p class="section-subheading">
+        Marketing thinking, implementation, automation, QA, and technical problem solving — connected as one delivery system.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-[0.75fr_1.1fr_0.9fr] md:items-stretch">
+      <div class="card-surface overflow-hidden">
+        <img
+          src={site.photoUrl}
+          alt={site.name}
+          class="h-full min-h-[280px] w-full object-cover object-top"
+          width="480"
+          height="600"
+        />
+      </div>
+      <div class="card-surface h-full p-6">
+        <div class="space-y-4 text-sm leading-relaxed text-muted">
+          {about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+
+      <div class="card-surface h-full p-6">
+        <p class="text-sm font-semibold text-foreground">Quick facts</p>
+        <p class="mt-1 text-xs uppercase tracking-[0.14em] text-subtle">Hiring Snapshot</p>
+
+        <p class="mt-5 text-xs uppercase tracking-[0.2em] text-subtle">Project work</p>
+        <p class="mt-2 text-sm font-semibold text-foreground">
+          Research, content, funnels, lead magnets, email, automation, and web delivery
+        </p>
+
+        <p class="mt-5 text-xs uppercase tracking-[0.2em] text-subtle">Delivery</p>
+        <p class="mt-2 text-sm text-muted">
+          Campaign execution backed by responsive web work, practical integrations, QA, and deployment
+        </p>
+
+        <p class="mt-5 text-xs uppercase tracking-[0.2em] text-subtle">Availability</p>
+        <p class="mt-2 text-sm text-muted">{site.availability}</p>
+
+        <div class="mt-6 grid gap-3">
+          <div class="rounded-xl border border-border/90 bg-surface-muted p-4">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Technical execution</p>
+            <p class="mt-2 text-sm text-muted">
+              Responsive interfaces, workflow troubleshooting, integrations, and deployment-ready delivery.
+            </p>
+          </div>
+          <div class="rounded-xl border border-border/90 bg-surface-muted p-4">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Growth</p>
+            <p class="mt-2 text-sm text-muted">
+              Funnels, automation, and content that support a real next step.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

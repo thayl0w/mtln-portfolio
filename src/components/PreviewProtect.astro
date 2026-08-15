@@ -1,0 +1,72 @@
+---
+---
+
+<script>
+  function isProtectedTarget(target: EventTarget | null) {
+    if (!(target instanceof Element)) return false;
+    return Boolean(
+      target.closest(
+        '.preview-protected, #credential-modal, #project-gallery-modal, [data-project-gallery], [data-document]',
+      ),
+    );
+  }
+
+  function setupPreviewProtect() {
+    if (document.body.dataset.previewProtect === 'true') return;
+    document.body.dataset.previewProtect = 'true';
+
+    document.addEventListener(
+      'error',
+      (event) => {
+        const img = event.target instanceof HTMLImageElement ? event.target : null;
+        if (!img || img.dataset.fallbackApplied === 'true') return;
+        img.dataset.fallbackApplied = 'true';
+        const title = (img.alt || 'Portfolio asset').replace(/[<>&"']/g, '');
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900"><rect width="1200" height="900" fill="#191b1f"/><rect x="48" y="48" width="1104" height="804" rx="28" fill="#22252a" stroke="#3a3f46" stroke-width="2"/><path d="M190 670L410 450l150 150 120-120 330 330H190z" fill="#681212" opacity=".48"/><circle cx="865" cy="290" r="92" fill="#d4af37" opacity=".12"/><text x="600" y="390" text-anchor="middle" fill="#d4af37" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="4">PORTFOLIO ASSET</text><text x="600" y="455" text-anchor="middle" fill="#f5f1e8" font-family="Arial,sans-serif" font-size="36" font-weight="700">${title}</text><text x="600" y="515" text-anchor="middle" fill="#c9c5bc" font-family="Arial,sans-serif" font-size="23">Source image is not bundled in this export.</text></svg>`;
+        img.src = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+      },
+      true,
+    );
+
+    document.addEventListener(
+      'contextmenu',
+      (event) => {
+        if (isProtectedTarget(event.target)) event.preventDefault();
+      },
+      true,
+    );
+
+    document.addEventListener(
+      'dragstart',
+      (event) => {
+        if (isProtectedTarget(event.target)) event.preventDefault();
+      },
+      true,
+    );
+
+    document.addEventListener(
+      'copy',
+      (event) => {
+        const modalOpen = document.querySelector('#credential-modal.flex, #project-gallery-modal.flex');
+        if (modalOpen) event.preventDefault();
+      },
+      true,
+    );
+
+    document.addEventListener(
+      'keydown',
+      (event) => {
+        const modalOpen = document.querySelector('#credential-modal.flex, #project-gallery-modal.flex');
+        if (!modalOpen) return;
+        const key = event.key.toLowerCase();
+        if ((event.ctrlKey || event.metaKey) && ['s', 'p', 'u'].includes(key)) {
+          event.preventDefault();
+        }
+      },
+      true,
+    );
+  }
+
+  setupPreviewProtect();
+  document.addEventListener('astro:page-load', setupPreviewProtect);
+</script>

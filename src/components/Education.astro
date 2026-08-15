@@ -1,0 +1,20 @@
+---
+import { education } from '../data/portfolio';
+import CredentialCard from './CredentialCard.astro';
+---
+
+<section id="education" class="section-fade py-10 md:py-14">
+  <div class="section-container">
+    <div class="mb-7 max-w-3xl space-y-3 md:mb-8">
+      <p class="section-eyebrow">Education</p>
+      <h2 class="section-heading">Academic background</h2>
+      <p class="section-subheading">
+        Formal degrees earned through Brigham Young University-Idaho's online Software Development program.
+      </p>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      {education.map((credential) => <CredentialCard credential={credential} />)}
+    </div>
+  </div>
+</section>

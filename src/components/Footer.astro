@@ -1,0 +1,58 @@
+---
+import { site, socialLinks, navLinks } from '../data/portfolio';
+
+const year = new Date().getFullYear();
+const connectLinks = socialLinks.filter((l) => l.icon !== 'email');
+---
+
+<footer class="footer-ambient relative overflow-hidden border-t border-white/10 py-12">
+  <div class="footer-ribbon" aria-hidden="true"></div>
+
+  <div class="section-container relative z-10 grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
+    <div class="space-y-3">
+      <p class="text-sm font-semibold tracking-[0.06em] text-white">{site.name}</p>
+      <p class="max-w-xl text-sm text-slate-200/90">
+        Digital marketing, automation, funnels, and web systems — strategy backed by hands-on execution.
+      </p>
+      <p class="text-sm text-slate-300/90">
+        {site.tagline} — {site.location}
+      </p>
+      <p class="pt-2 text-xs text-slate-400">
+        &copy; {year} {site.name}. All rights reserved.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-5 text-sm">
+      <div class="space-y-2">
+        <p class="text-xs uppercase tracking-[0.16em] text-slate-300">Connect</p>
+        <a class="block text-slate-200/95 transition hover:text-white" href={`mailto:${site.email}`}>
+          Email
+        </a>
+        {
+          connectLinks.map((link) => (
+            <a
+              class="block text-slate-200/95 transition hover:text-white"
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="space-y-2">
+        <p class="text-xs uppercase tracking-[0.16em] text-slate-300">Navigate</p>
+        <a class="block text-slate-200/95 transition hover:text-gold-light" href="/#hero">Home</a>
+        {
+          navLinks.slice(0, 4).map((link) => (
+            <a class="block text-slate-200/95 transition hover:text-gold-light" href={`/${link.href}`}>
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

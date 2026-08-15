@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  /** Live site homepage URL shown inside the card */
+  liveUrl: string;
+  /** Fallback image when there is no live URL */
+  fallbackImage?: string;
+  imagePosition?: 'top' | 'center';
+}
+
+const {
+  title,
+  liveUrl,
+  fallbackImage = '/projects/project-1.jpg',
+  imagePosition = 'top',
+} = Astro.props;
+const objectClass = imagePosition === 'center' ? 'object-center' : 'object-top';
+const hasLive = Boolean(liveUrl && liveUrl !== '#');
+
+/** Desktop canvas the live site is rendered at, then scaled to the card */
+const DESKTOP_W = 1440;
+const DESKTOP_H = 900;
+---
+
+{
+  hasLive ? (
+    <div
+      class="project-preview relative w-full overflow-hidden bg-surface-alt"
+      data-project-preview
+      data-desktop-w={DESKTOP_W}
+      data-desktop-h={DESKTOP_H}
+      style="aspect-ratio: 16 / 10;"
+    >
+      <div
+        class="project-preview__scaler absolute left-0 top-0 origin-top-left will-change-transform"
+        data-preview-scaler
+        style={`width: ${DESKTOP_W}px; height: ${DESKTOP_H}px;`}
+      >
+        <iframe
+          src={liveUrl}
+          title={`${title} live homepage preview`}
+          class="block h-full w-full border-0 bg-white"
+          loading="lazy"
+          tabindex="-1"
+          referrerpolicy="no-referrer-when-downgrade"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        ></iframe>
+      </div>
+
+      {/* Soft bottom fade so text below the card still reads cleanly */}
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface/70 to-transparent"></div>
+      <div class="pointer-events-none absolute inset-0 bg-accent/0 transition-colors duration-300 group-hover:bg-accent/8"></div>
+
+      {/* Block accidental interaction with the live site */}
+      <div class="absolute inset-0 z-10" aria-hidden="true"></div>
+    </div>
+  ) : (
+    <div class="relative w-full overflow-hidden bg-surface-alt" style="aspect-ratio: 16 / 10;">
+      <img
+        src={fallbackImage}
+        alt={title}
+        class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', objectClass]}
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-surface/20 to-transparent"></div>
+      <div class="absolute inset-0 bg-accent/0 transition-colors duration-300 group-hover:bg-accent/8"></div>
+    </div>
+  )
+}
+
+<script>
+  function fitPreview(root: HTMLElement) {
+    const scaler = root.querySelector<HTMLElement>('[data-preview-scaler]');
+    if (!scaler) return;
+
+    const desktopW = Number(root.dataset.desktopW || 1440);
+    const width = root.clientWidth || root.getBoundingClientRect().width;
+    if (!width) return;
+
+    // Scale so the full desktop width fills the card width exactly
+    const scale = width / desktopW;
+    scaler.style.transform = `scale(${scale})`;
+  }
+
+  function fitAll() {
+    document.querySelectorAll<HTMLElement>('[data-project-preview]').forEach(fitPreview);
+  }
+
+  const ro =
+    typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver((entries) => {
+          entries.forEach((entry) => fitPreview(entry.target as HTMLElement));
+        })
+      : null;
+
+  function init() {
+    document.querySelectorAll<HTMLElement>('[data-project-preview]').forEach((el) => {
+      fitPreview(el);
+      ro?.observe(el);
+    });
+  }
+
+  init();
+  document.addEventListener('astro:page-load', init);
+  window.addEventListener('resize', fitAll);
+</script>

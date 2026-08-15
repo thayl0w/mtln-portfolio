@@ -1,0 +1,96 @@
+---
+import type { Project } from '../data/portfolio';
+import ProjectPreview from './ProjectPreview.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const hasLive = Boolean(project.liveUrl && project.liveUrl !== '#');
+const hasGallery = Boolean(project.gallery?.length);
+const previewUrl = project.useImagePreview ? '#' : project.liveUrl;
+
+const typeLabels: Record<string, string> = {
+  client: 'Client system',
+  research: 'Research',
+  ops: 'SOP / operations',
+  funnel: 'Live funnel',
+  app: 'Web app',
+};
+---
+
+<article class="card-surface group overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+  {
+    hasGallery ? (
+      <button
+        type="button"
+        class="block w-full text-left"
+        data-project-gallery={project.id}
+        aria-label={`View ${project.title} gallery`}
+      >
+        <ProjectPreview
+          title={project.title}
+          liveUrl={previewUrl}
+          fallbackImage={project.image}
+          imagePosition={project.imagePosition}
+        />
+      </button>
+    ) : (
+      <ProjectPreview
+        title={project.title}
+        liveUrl={previewUrl}
+        fallbackImage={project.image}
+        imagePosition={project.imagePosition}
+      />
+    )
+  }
+
+  <div class="p-6">
+    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold">
+      {typeLabels[project.category]}
+    </p>
+    <h3 class="mt-2 text-xl font-semibold text-foreground transition-colors group-hover:text-accent">
+      {project.title}
+    </h3>
+    <p class="mt-2 text-sm leading-relaxed text-muted">
+      {project.description}
+    </p>
+
+    <div class="mt-4 flex flex-wrap gap-2">
+      {project.tech.map((tech) => (
+        <span class="rounded-full border border-border bg-surface-alt px-2.5 py-1 text-xs font-medium text-muted">
+          {tech}
+        </span>
+      ))}
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      {hasGallery ? (
+        <button type="button" class="btn-outline" data-project-gallery={project.id}>
+          View work
+        </button>
+      ) : null}
+      {hasLive ? (
+        <a href={project.liveUrl} class="btn-outline" target="_blank" rel="noopener noreferrer">
+          Live Demo
+        </a>
+      ) : null}
+      {project.githubUrl && project.githubUrl !== '#' ? (
+        <a href={project.githubUrl} class="btn-outline" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      ) : null}
+      {project.documents?.map((document) => (
+          <button
+            type="button"
+            class="btn-outline"
+            data-document={document.url}
+            data-title={document.title}
+          >
+            {document.title}
+          </button>
+      ))}
+    </div>
+  </div>
+</article>
