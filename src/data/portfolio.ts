@@ -147,7 +147,7 @@ export const skillCategories: SkillCategory[] = [
     description: 'Visual design, carousels, ads, and before/after graphics.',
     skills: [
       { id: 'canva', name: 'Canva', url: 'https://www.canva.com', iconType: 'asset' },
-      { id: 'figma', name: 'Figma', url: 'https://www.figma.com', iconType: 'asset' },
+      { id: 'figma', name: 'Figma', url: 'https://www.figma.com', iconType: 'brand' },
       { id: 'capcut', name: 'CapCut', url: 'https://www.capcut.com', iconType: 'asset' },
       { id: 'adobephotoshop', name: 'Adobe Photoshop', url: 'https://www.adobe.com/products/photoshop.html', iconType: 'asset' },
     ],

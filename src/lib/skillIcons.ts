@@ -33,6 +33,7 @@ export const brandIconMap = {
   zapier: 'siZapier',
   seo: 'siGooglesearchconsole',
   elementor: 'siElementor',
+  figma: 'siFigma',
 } as const satisfies Record<string, SimpleIconKey>;
 
 /**
@@ -42,16 +43,15 @@ export const brandIconMap = {
 export const assetIconMap = {
   gohighlevel: '/skills/gohighlevel.svg',
   systemeio: '/skills/systemeio.svg',
-  clickfunnels: '/skills/clickfunnels.svg',
-  canva: '/skills/canva.svg',
-  figma: '/skills/figma.svg',
-  capcut: '/skills/capcut.svg',
+  clickfunnels: '/skills/clickfunnels.png',
+  canva: '/skills/canva.png',
+  capcut: '/skills/capcut.png',
   adobephotoshop: '/skills/adobephotoshop.svg',
   microsoftoffice: '/skills/microsoftoffice.svg',
   googleworkspace: '/skills/googleworkspace.svg',
   googleforms: '/skills/googleforms.svg',
   gorgias: '/skills/gorgias.svg',
-  jotform: '/skills/jotform.svg',
+  jotform: '/skills/jotform.png',
   powershell: '/skills/powershell.svg',
   mysqlcolor: '/skills/mysql.svg',
 } as const satisfies Record<string, string>;

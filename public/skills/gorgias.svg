@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="gorgias"><rect x="2" y="2" width="60" height="60" rx="15" fill="#17191d" stroke="#F5C542" stroke-opacity=".55" stroke-width="2"/><circle cx="32" cy="32" r="23" fill="#F5C542" fill-opacity=".12"/><text x="32" y="38" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#F5C542">G</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 64 64" fill="none">
+  <title>Gorgias</title>
+  <path fill="#FF8A80" fill-rule="evenodd" d="M18 10h28a10 10 0 0 1 10 10v16a10 10 0 0 1-10 10H34l-8 10v-10H18A10 10 0 0 1 8 36V20A10 10 0 0 1 18 10zm4 8h20a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V22a4 4 0 0 1 4-4z"/>
+  <path fill="#FF8A80" d="M26 28h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H30l-4 5v-5h-2a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
+</svg>

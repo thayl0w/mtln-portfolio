@@ -28,9 +28,10 @@ if (isBrand) {
   if (icon) {
     path = icon.path;
     brandColor = `#${icon.hex}`;
-    // Pale brand colors (JS yellow, Mailchimp yellow, etc.) need a dark plate
-    // so the monochrome mark stays readable on light skill cards.
-    needsDarkPlate = brandLuminance(brandColor) > 0.72;
+    const lum = brandLuminance(brandColor);
+    // Pale marks (JS / Mailchimp yellow) stay on a dark plate.
+    // Near-black marks (GitHub, Vercel, Notion) stay dark — they sit on a light well.
+    needsDarkPlate = lum > 0.72;
   }
 }
 
