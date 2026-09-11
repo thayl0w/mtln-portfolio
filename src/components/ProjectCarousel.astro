@@ -1,0 +1,125 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="project-carousel" data-project-carousel>
+  <div class="flex items-stretch gap-2 sm:gap-3">
+    <button
+      type="button"
+      class="project-carousel__arrow shrink-0 self-center"
+      data-carousel-prev
+      aria-label={`Previous ${label}`}
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <div
+      class="project-carousel__scroller min-w-0 flex-1 snap-x snap-mandatory overflow-x-auto overscroll-x-contain"
+      data-carousel-scroller
+    >
+      <div class="flex items-stretch gap-4 pb-1">
+        <slot />
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="project-carousel__arrow shrink-0 self-center"
+      data-carousel-next
+      aria-label={`Next ${label}`}
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .project-carousel__scroller {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .project-carousel__scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-carousel :global(.carousel-card) {
+    flex: 0 0 min(16.25rem, 76vw);
+    max-width: 16.25rem;
+    min-height: 100%;
+    scroll-snap-align: start;
+  }
+
+  .project-carousel__arrow {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    background: rgba(25, 27, 31, 0.92);
+    color: #f5f1e8;
+    transition: border-color 180ms ease, background-color 180ms ease, opacity 180ms ease;
+  }
+
+  @media (min-width: 640px) {
+    .project-carousel.is-scrollable .project-carousel__arrow {
+      display: inline-flex;
+    }
+  }
+
+  .project-carousel__arrow:hover:not(:disabled) {
+    border-color: #d4af37;
+    background: rgba(196, 43, 39, 0.18);
+  }
+
+  .project-carousel__arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+</style>
+
+<script>
+  function setupCarousel(root: HTMLElement) {
+    const scroller = root.querySelector<HTMLElement>('[data-carousel-scroller]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    if (!scroller || !prev || !next) return;
+
+    const card = () => scroller.querySelector<HTMLElement>('.carousel-card');
+
+    const update = () => {
+      const overflow = scroller.scrollWidth - scroller.clientWidth > 4;
+      const max = scroller.scrollWidth - scroller.clientWidth - 2;
+      root.classList.toggle('is-scrollable', overflow);
+      prev.disabled = !overflow || scroller.scrollLeft <= 2;
+      next.disabled = !overflow || scroller.scrollLeft >= max;
+    };
+
+    const step = () => {
+      const el = card();
+      return el ? el.getBoundingClientRect().width + 16 : scroller.clientWidth * 0.8;
+    };
+
+    prev.addEventListener('click', () => {
+      scroller.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    next.addEventListener('click', () => {
+      scroller.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+    scroller.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-project-carousel]').forEach(setupCarousel);
+</script>

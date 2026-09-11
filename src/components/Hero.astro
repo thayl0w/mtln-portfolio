@@ -3,20 +3,19 @@ import { site } from '../data/portfolio';
 import ResumePreviewButton from './ResumePreviewButton.astro';
 ---
 
-<section id="hero" class="hero-section relative overflow-hidden pb-14 pt-36 md:pb-20 md:pt-44">
+<section id="hero" class="hero-section relative overflow-hidden pb-14 pt-28 md:pb-20 md:pt-32">
   <div class="pointer-events-none absolute inset-0">
     <div class="absolute -top-20 right-0 h-[420px] w-[420px] rounded-full bg-accent/20 blur-[100px] animate-glow-pulse"></div>
     <div class="absolute bottom-0 left-[-4rem] h-[320px] w-[320px] rounded-full bg-gold/10 blur-[90px]"></div>
   </div>
 
   <div class="section-container relative z-10">
-    <div class="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+    <div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
       <div class="space-y-6 md:space-y-7">
         <p class="text-eyebrow text-gold animate-fade-in">
           {site.tagline}
         </p>
 
-        <!-- Extra top margin keeps the headline clear of the fixed nav (no overlay look) -->
         <h1 class="hero-title text-display font-serif text-navy animate-slide-up">
           {site.heroHeadline}
         </h1>
@@ -107,25 +106,10 @@ import ResumePreviewButton from './ResumePreviewButton.astro';
 
 <style>
   .hero-section {
-    /* Clear fixed navbar (~72px) + chevron tab + breathing room */
     scroll-margin-top: 6rem;
   }
 
   .hero-title {
-    margin-top: 0.35rem;
     line-height: 1.08;
-    position: relative;
-    z-index: 1;
-  }
-
-  @media (min-width: 768px) {
-    .hero-section {
-      /* Slightly more clearance on larger screens where the nav is taller */
-      padding-top: 11rem;
-    }
-
-    .hero-title {
-      margin-top: 0.5rem;
-    }
   }
 </style>

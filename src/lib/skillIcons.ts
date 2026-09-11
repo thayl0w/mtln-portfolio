@@ -58,10 +58,10 @@ export const assetIconMap = {
   powershell: '/skills/powershell.svg',
   mysqlcolor: '/skills/mysql.svg',
   klaviyo: '/skills/klaviyo.png',
-  chatgpt: '/skills/chatgpt.svg',
-  claude: '/skills/claude.svg',
-  grok: '/skills/grok.png',
-  gemini: '/skills/gemini.svg',
+  chatgpt: '/skills/chatgpt-logo.png',
+  claude: '/skills/claude-logo.png',
+  grok: '/skills/grok-logo.png',
+  gemini: '/skills/gemini-logo.png',
 } as const satisfies Record<string, string>;
 
 export type BrandIconId = keyof typeof brandIconMap;

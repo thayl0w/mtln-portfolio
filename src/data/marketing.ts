@@ -654,13 +654,8 @@ export function getMarketingCategory(id: string) {
 }
 
 export function marketingCounts(category: MarketingCategory) {
-  const deliverables = category.brands.reduce((sum, brand) => sum + brand.deliverables.length, 0);
-  const items = category.brands.reduce(
-    (sum, brand) =>
-      sum + brand.deliverables.reduce((brandSum, item) => brandSum + (item.assets?.length || (item.href ? 1 : 1)), 0),
-    0,
-  );
-  return { brands: category.brands.length, deliverables, items };
+  const projects = category.brands.length;
+  return { brands: projects, deliverables: projects, items: projects, projects };
 }
 
 export function getMarketingBrands() {
