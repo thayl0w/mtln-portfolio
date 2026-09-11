@@ -34,6 +34,8 @@ export const brandIconMap = {
   seo: 'siGooglesearchconsole',
   elementor: 'siElementor',
   figma: 'siFigma',
+  shopify: 'siShopify',
+  wix: 'siWix',
 } as const satisfies Record<string, SimpleIconKey>;
 
 /**
@@ -54,6 +56,7 @@ export const assetIconMap = {
   jotform: '/skills/jotform.png',
   powershell: '/skills/powershell.svg',
   mysqlcolor: '/skills/mysql.svg',
+  klaviyo: '/skills/klaviyo.png',
 } as const satisfies Record<string, string>;
 
 export type BrandIconId = keyof typeof brandIconMap;

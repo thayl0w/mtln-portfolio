@@ -139,6 +139,7 @@ export const skillCategories: SkillCategory[] = [
       { id: 'googleforms', name: 'Google Forms', url: 'https://www.google.com/forms/about/', iconType: 'asset' },
       { id: 'zapier', name: 'Zapier', url: 'https://zapier.com', iconType: 'brand' },
       { id: 'mailchimp', name: 'Mailchimp', url: 'https://mailchimp.com', iconType: 'brand' },
+      { id: 'klaviyo', name: 'Klaviyo', url: 'https://www.klaviyo.com', iconType: 'asset' },
     ],
   },
   {
@@ -169,6 +170,8 @@ export const skillCategories: SkillCategory[] = [
       { id: 'github', name: 'Git & GitHub', url: 'https://github.com', iconType: 'brand' },
       { id: 'wordpress', name: 'WordPress', url: 'https://wordpress.org', iconType: 'brand' },
       { id: 'elementor', name: 'Elementor', url: 'https://elementor.com', iconType: 'brand' },
+      { id: 'shopify', name: 'Shopify', url: 'https://www.shopify.com', iconType: 'brand' },
+      { id: 'wix', name: 'Wix', url: 'https://www.wix.com', iconType: 'brand' },
       { id: 'vercel', name: 'Vercel', url: 'https://vercel.com', iconType: 'brand' },
     ],
   },
