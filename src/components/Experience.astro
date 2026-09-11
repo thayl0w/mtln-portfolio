@@ -1,29 +1,78 @@
 ---
-import { experience } from '../data/portfolio';
+import { experience, leadership } from '../data/portfolio';
 ---
 
 <section id="experience" class="section-fade py-10 md:py-14">
   <div class="section-container">
     <div class="mb-7 max-w-3xl space-y-3 md:mb-8">
       <p class="section-eyebrow">Experience</p>
-      <h2 class="section-heading">Professional and leadership experience</h2>
+      <h2 class="section-heading">Professional Experience</h2>
       <p class="section-subheading">
-        Roles focused on execution discipline, communication, and delivery.
+        Roles focused on marketing execution, automation, web development, and operational delivery.
       </p>
     </div>
 
-    <div class="space-y-6">
+    <div class="space-y-5">
       {
         experience.map((role) => (
-          <article class="card-surface p-6">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <p class="text-sm font-semibold text-foreground">
-                {role.title} — {role.company}
-              </p>
-              <p class="text-xs uppercase tracking-[0.2em] text-subtle">{role.period}</p>
+          <article class="card-surface p-5 md:p-6">
+            <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
+              <h3 class="max-w-3xl font-serif text-lg font-semibold leading-snug text-foreground md:text-xl">
+                {role.title}
+              </h3>
+              <p class="shrink-0 text-xs font-medium uppercase tracking-[0.16em] text-subtle">{role.period}</p>
             </div>
-            <p class="mt-1 text-xs text-muted-dark">{role.location}</p>
-            <ul class="mt-4 space-y-2.5">
+            <p class="mt-1.5 text-sm text-muted">
+              {role.company}
+              <span class="text-subtle"> · </span>
+              {role.location}
+            </p>
+            <ul class="mt-4 space-y-2">
+              {role.bullets.map((bullet) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-muted">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section id="leadership" class="section-fade py-10 md:py-14">
+  <div class="section-container">
+    <div class="mb-7 max-w-3xl space-y-3 md:mb-8">
+      <p class="section-eyebrow">Leadership</p>
+      <h2 class="section-heading">Leadership &amp; Team Development</h2>
+      <p class="section-subheading">
+        Leadership progression held separately from the missionary role itself.
+      </p>
+    </div>
+
+    <div class="space-y-5">
+      {
+        leadership.map((role) => (
+          <article class="card-surface p-5 md:p-6">
+            <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
+              <h3 class="max-w-3xl font-serif text-lg font-semibold leading-snug text-foreground md:text-xl">
+                {role.title}
+              </h3>
+              <p class="shrink-0 text-xs font-medium uppercase tracking-[0.16em] text-subtle">{role.period}</p>
+            </div>
+            <p class="mt-1.5 text-sm text-muted">
+              {role.company}
+              <span class="text-subtle"> · </span>
+              {role.location}
+            </p>
+            {
+              role.progression?.length ? (
+                <p class="mt-4 text-sm leading-relaxed text-foreground">{role.progression.join(' → ')}</p>
+              ) : null
+            }
+            <ul class="mt-4 space-y-2">
               {role.bullets.map((bullet) => (
                 <li class="flex gap-3 text-sm leading-relaxed text-muted">
                   <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>

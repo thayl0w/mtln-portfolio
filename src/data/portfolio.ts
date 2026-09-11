@@ -63,46 +63,69 @@ export const about = {
 
 export const experience = [
   {
-    title: 'Marketing Automation, Digital Marketing & Web Development',
-    company: 'Independent Contractor · Self-Employed',
+    title: 'Marketing Automation, Digital Marketing & Web Development — Independent Contractor',
+    company: 'Self-Employed',
     period: '2023 – Present',
-    location: 'Remote · Philippines',
+    location: 'Remote, Philippines',
     bullets: [
-      'Built and optimized lead-generation funnels, landing pages, and responsive web assets across marketing campaigns.',
-      'Configured CRM forms, lead-management flows, email/SMS nurture sequences, and automated follow-up in GoHighLevel and Systeme.io.',
-      'Produced social content, ad creative, lead magnets, conversion-focused copy, and supporting campaign assets.',
-      'Tested forms, links, responsive layouts, funnels, and deployments; documented fixes and repeatable processes through SOPs.',
+      'Build responsive websites, landing pages, lead-capture funnels, and conversion pages using HTML, CSS/Tailwind, JavaScript, WordPress, Astro.js, and Systeme.io.',
+      'Configure CRM forms, lead-management workflows, email/SMS nurture sequences, pipelines, booking paths, and automated follow-up in GoHighLevel and Systeme.io.',
+      'Create social content, ad creatives, lead magnets, campaign copy, and marketing assets.',
+      'Support Meta advertising, SEO, research, analytics, testing, QA, and deployment troubleshooting.',
     ],
   },
   {
-    title: 'Software Development Student',
-    company: 'Brigham Young University – Idaho',
-    period: '2024 – Present',
-    location: 'Rexburg, Idaho · Online',
+    title: 'Digital Marketing Virtual Assistant',
+    company: 'Doneverse',
+    period: 'February 2024 – February 2025',
+    location: 'Australia (Remote)',
     bullets: [
-      'Completed software-development coursework in web development, databases, and software engineering.',
-      'Built full-stack applications with HTML, CSS, JavaScript, Node.js, and PostgreSQL.',
-      'Worked on team projects with Git, reviews, and iterative delivery.',
+      'Supported end-to-end digital marketing operations for lead generation, customer acquisition, and business growth.',
+      'Built and optimized websites, landing pages, and sales funnels using WordPress, GoHighLevel, Systeme.io, ClickFunnels, and custom HTML/CSS/JavaScript.',
+      'Supported Meta advertising, email marketing, automation workflows, CRM pipelines, SEO research, social content, lead magnets, and performance reporting.',
     ],
   },
   {
-    title: 'Missionary Volunteer',
+    title: 'Full-Time Missionary',
     company: 'The Church of Jesus Christ of Latter-day Saints',
-    period: '2021 – 2023',
+    period: 'August 2021 – August 2023',
     location: 'Philippines',
     bullets: [
-      'Served full-time for two years teaching, mentoring, and coordinating daily outreach.',
-      'Managed schedules, goals, and reporting in a self-directed environment.',
+      'Engaged with 50+ individuals daily through outreach and teaching.',
+      'Trained and mentored new volunteers on communication, documentation, scheduling, and daily operations.',
+      'Maintained contact records, schedules, goals, and progress reports while working in large teams.',
     ],
   },
   {
     title: 'Budget Office Intern',
     company: 'City Hall of Bato',
-    period: 'Jan 2019 – Mar 2019',
-    location: 'Philippines',
+    period: 'January 2019 – March 2019',
+    location: 'Camarines Sur, Philippines',
     bullets: [
-      'Prepared and reviewed budget reports, financial documents, and official correspondence for municipal departments.',
-      'Reorganized physical and digital filing systems and provided day-to-day administrative support.',
+      'Prepared budget reports, financial documents, and official correspondence.',
+      'Reorganized physical and digital filing systems and provided administrative support.',
+    ],
+  },
+];
+
+export const leadership = [
+  {
+    title: 'Missionary Leadership Progression',
+    company: 'The Church of Jesus Christ of Latter-day Saints',
+    period: '2021 – 2023',
+    location: 'Philippines',
+    progression: [
+      'Junior Companion',
+      'District Leader Trainer',
+      'Senior Companion',
+      'District Leader',
+      'Zone Leader',
+      'Zone Leader Lead',
+    ],
+    bullets: [
+      'Progressed through increasing leadership responsibilities across district and zone assignments.',
+      'Led and trained teams of 10–30+ missionaries on communication, teaching effectiveness, time management, scheduling, reporting, coaching, and performance improvement.',
+      'Supported goal-setting, accountability, and operational coordination across assigned teams.',
     ],
   },
 ];
