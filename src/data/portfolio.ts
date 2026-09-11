@@ -201,7 +201,7 @@ export const skillCategories: SkillCategory[] = [
   }
 ];
 
-export type ProjectCategory = 'client' | 'research' | 'ops' | 'funnel' | 'app' | 'website';
+export type ProjectCategory = 'client' | 'research' | 'ops' | 'funnel' | 'app';
 
 export interface ProjectGalleryItem {
   src: string;
@@ -247,7 +247,6 @@ export const projectGroups: {
   label: string;
   description: string;
 }[] = [
-  { id: 'website', label: 'Live websites', description: 'Published client websites live on their own domains.' },
   { id: 'funnel', label: 'Conversion & funnel builds', description: 'Published landing pages and multi-step conversion experiences that demonstrate the technical execution behind marketing ideas.' },
   { id: 'app', label: 'Web applications', description: 'Application projects that demonstrate frontend, data, responsive UI, and deployment skills as a supporting technical capability.' },
 ];
@@ -272,7 +271,7 @@ export const projects: Project[] = [
     tech: ['Systeme.io', 'Website', 'Booking'],
     liveUrl: 'https://www.pristineimagemedspa.com/',
     githubUrl: '#',
-    category: 'website',
+    category: 'funnel',
     relatedLinks: [
       { label: 'Website work', href: '/marketing/websites/piw' },
       { label: 'Funnel', href: '/marketing/funnels/piw' },
