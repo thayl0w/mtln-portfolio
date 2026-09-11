@@ -1,10 +1,7 @@
 ---
-import { getMarketingBrands, getMarketingWindows, marketingCategories, marketingCounts } from '../data/marketing';
-import CompactProjectCard from './CompactProjectCard.astro';
-import ProjectCarousel from './ProjectCarousel.astro';
+import { getMarketingBrands, marketingCategories, marketingCounts } from '../data/marketing';
 
 const brands = getMarketingBrands();
-const windows = getMarketingWindows();
 ---
 
 <section id="marketing" class="section-fade py-12 md:py-16">
@@ -17,7 +14,7 @@ const windows = getMarketingWindows();
       </p>
     </div>
 
-    <div class="mb-10 flex flex-wrap gap-2" aria-label="Browse by brand">
+    <div class="mb-8 flex flex-wrap gap-2" aria-label="Browse by brand">
       {
         brands.map((brand) => (
           <a href={`/marketing/brand/${brand.id}`} class="btn-outline !rounded-full !px-3.5 !py-1.5 text-sm">
@@ -27,40 +24,30 @@ const windows = getMarketingWindows();
       }
     </div>
 
-    <div class="space-y-12">
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {
         marketingCategories.map((category) => {
           const counts = marketingCounts(category);
-          const projects = windows.filter((window) => window.category.id === category.id);
           return (
-            <section id={`marketing-${category.id}`} class="scroll-mt-28">
-              <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <h3 class="font-serif text-2xl font-semibold text-foreground">{category.title}</h3>
-                  <p class="mt-1 text-xs uppercase tracking-[0.14em] text-subtle">
-                    {counts.projects} project{counts.projects === 1 ? '' : 's'} · {counts.brands} brand{counts.brands === 1 ? '' : 's'}
-                  </p>
-                </div>
-                <a href={`/marketing/${category.id}`} class="text-sm font-semibold text-gold-light">
-                  {category.explore} →
-                </a>
-              </div>
-              <ProjectCarousel label={category.title}>
-                {
-                  projects.map((project) => (
-                    <div class="carousel-card">
-                      <CompactProjectCard
-                        href={project.href}
-                        image={project.preview}
-                        eyebrow={category.title}
-                        title={project.brand}
-                        summary={project.summary}
-                      />
-                    </div>
-                  ))
-                }
-              </ProjectCarousel>
-            </section>
+            <a
+              href={`/marketing/${category.id}`}
+              class="card-surface group flex h-full flex-col p-6 transition-transform duration-300 hover:-translate-y-1"
+            >
+              <p class="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-gold">
+                {category.eyebrow}
+              </p>
+              <h3 class="mt-3 font-serif text-2xl font-semibold text-foreground group-hover:text-gold-light">
+                {category.title}
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{category.summary}</p>
+              <p class="mt-5 text-xs uppercase tracking-[0.14em] text-subtle">
+                {counts.projects} project{counts.projects === 1 ? '' : 's'} · {counts.brands} brand{counts.brands === 1 ? '' : 's'}
+              </p>
+              <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-light">
+                {category.explore}
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
           );
         })
       }

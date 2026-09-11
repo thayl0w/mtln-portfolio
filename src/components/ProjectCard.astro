@@ -20,7 +20,7 @@ const typeLabels: Record<string, string> = {
 };
 ---
 
-<article class="card-surface group overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+<article class="card-surface group flex h-full min-h-0 flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1">
   {
     hasGallery ? (
       <button
@@ -46,7 +46,7 @@ const typeLabels: Record<string, string> = {
     )
   }
 
-  <div class="p-6">
+  <div class="flex flex-1 flex-col p-6">
     <p class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold">
       {typeLabels[project.category]}
     </p>
@@ -65,7 +65,7 @@ const typeLabels: Record<string, string> = {
       ))}
     </div>
 
-    <div class="mt-6 flex flex-wrap gap-3">
+    <div class="mt-auto flex flex-wrap gap-3 pt-6">
       {hasGallery ? (
         <button type="button" class="btn-outline" data-project-gallery={project.id}>
           View work

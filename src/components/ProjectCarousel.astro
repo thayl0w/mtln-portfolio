@@ -52,10 +52,16 @@ const { label } = Astro.props;
   }
 
   .project-carousel :global(.carousel-card) {
-    flex: 0 0 min(16.25rem, 76vw);
-    max-width: 16.25rem;
+    display: flex;
+    flex: 0 0 min(32rem, 82vw);
+    max-width: 32rem;
     min-height: 100%;
     scroll-snap-align: start;
+  }
+
+  .project-carousel :global(.carousel-card > *) {
+    flex: 1 1 auto;
+    width: 100%;
   }
 
   .project-carousel__arrow {

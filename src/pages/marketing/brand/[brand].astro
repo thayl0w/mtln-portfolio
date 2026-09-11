@@ -2,8 +2,6 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
-import CompactProjectCard from '../../../components/CompactProjectCard.astro';
-import ProjectCarousel from '../../../components/ProjectCarousel.astro';
 import { getMarketingBrand, getMarketingBrands, getMarketingWindows } from '../../../data/marketing';
 import { site } from '../../../data/portfolio';
 
@@ -31,22 +29,42 @@ const windows = getMarketingWindows().filter((window) => window.brandId === bran
       </p>
       <a href="/#marketing" class="btn-outline mt-6">Back to marketing work</a>
 
-      <div class="mt-10">
-        <ProjectCarousel label={brand.brand}>
-          {
-            windows.map((window) => (
-              <div class="carousel-card">
-                <CompactProjectCard
-                  href={window.href}
-                  image={window.preview}
-                  eyebrow={window.brand}
-                  title={window.category.title}
-                  summary={window.summary}
+      <div class="mt-12 grid gap-5 md:grid-cols-2">
+        {
+          windows.map((window) => (
+            <a
+              href={window.href}
+              class="card-surface group flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+            >
+              {window.preview ? (
+                <img
+                  src={window.preview}
+                  alt=""
+                  class="preview-protected aspect-[16/10] w-full object-cover object-top"
+                  loading="lazy"
+                  draggable="false"
                 />
+              ) : (
+                <div class="flex aspect-[16/10] items-center justify-center bg-surface-muted">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">{window.category.title}</p>
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5">
+                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold">
+                  {window.category.title}
+                </p>
+                <h2 class="mt-2 font-serif text-2xl font-semibold text-foreground group-hover:text-gold-light">
+                  {window.title}
+                </h2>
+                <p class="mt-2 flex-1 text-sm text-muted">{window.summary}</p>
+                <p class="mt-4 text-xs uppercase tracking-[0.14em] text-subtle">
+                  {window.assetCount} asset{window.assetCount === 1 ? '' : 's'}
+                </p>
+                <span class="mt-4 text-sm font-semibold text-gold-light">Open project window →</span>
               </div>
-            ))
-          }
-        </ProjectCarousel>
+            </a>
+          ))
+        }
       </div>
     </div>
   </main>
