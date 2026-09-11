@@ -41,7 +41,7 @@ export const brandIconMap = {
  * (or where multi-color marks are more recognizable).
  */
 export const assetIconMap = {
-  gohighlevel: '/skills/gohighlevel.svg',
+  gohighlevel: '/skills/gohighlevel.png',
   systemeio: '/skills/systemeio.svg',
   clickfunnels: '/skills/clickfunnels.png',
   canva: '/skills/canva.png',
