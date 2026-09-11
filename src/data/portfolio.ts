@@ -114,7 +114,7 @@ export interface Skill {
   iconType: 'brand' | 'asset';
 }
 
-export type SkillCategoryId = 'marketing' | 'web' | 'design' | 'productivity';
+export type SkillCategoryId = 'marketing' | 'web' | 'design' | 'productivity' | 'ai';
 
 export interface SkillCategory {
   id: SkillCategoryId;
@@ -130,6 +130,7 @@ export const skillCategories: SkillCategory[] = [
     description: 'Campaign, CRM, lead-generation, automation, SEO, and conversion tools.',
     skills: [
       { id: 'meta', name: 'Meta Ads Manager', url: 'https://adsmanager.facebook.com', iconType: 'brand' },
+      { id: 'metabusiness', name: 'Meta Business Suite', url: 'https://business.facebook.com', iconType: 'brand' },
       { id: 'gohighlevel', name: 'GoHighLevel', url: 'https://www.gohighlevel.com', iconType: 'asset' },
       { id: 'systemeio', name: 'Systeme.io', url: 'https://systeme.io', iconType: 'asset' },
       { id: 'clickfunnels', name: 'ClickFunnels', url: 'https://www.clickfunnels.com', iconType: 'asset' },
@@ -151,6 +152,17 @@ export const skillCategories: SkillCategory[] = [
       { id: 'figma', name: 'Figma', url: 'https://www.figma.com', iconType: 'brand' },
       { id: 'capcut', name: 'CapCut', url: 'https://www.capcut.com', iconType: 'asset' },
       { id: 'adobephotoshop', name: 'Adobe Photoshop', url: 'https://www.adobe.com/products/photoshop.html', iconType: 'asset' },
+    ],
+  },
+  {
+    id: 'ai',
+    title: 'AI Tools',
+    description: 'AI assistants used for research, copy, planning, and production.',
+    skills: [
+      { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com', iconType: 'brand' },
+      { id: 'claude', name: 'Claude', url: 'https://claude.ai', iconType: 'brand' },
+      { id: 'grok', name: 'Grok', url: 'https://grok.com', iconType: 'asset' },
+      { id: 'gemini', name: 'Gemini', url: 'https://gemini.google.com', iconType: 'brand' },
     ],
   },
   {
@@ -181,7 +193,7 @@ export const skillCategories: SkillCategory[] = [
     description: 'Office suites, project management, forms, and scripting.',
     skills: [
       { id: 'microsoftoffice', name: 'Microsoft Office', url: 'https://www.microsoft.com/microsoft-365', iconType: 'asset' },
-      { id: 'googleworkspace', name: 'Google Suite', url: 'https://workspace.google.com', iconType: 'asset' },
+      { id: 'googleworkspace', name: 'Google Workspace', url: 'https://workspace.google.com', iconType: 'asset' },
       { id: 'trello', name: 'Trello', url: 'https://trello.com', iconType: 'brand' },
       { id: 'notion', name: 'Notion', url: 'https://www.notion.so', iconType: 'brand' },
       { id: 'powershell', name: 'PowerShell', url: 'https://learn.microsoft.com/powershell/', iconType: 'asset' },
