@@ -514,15 +514,15 @@ export interface Credential {
 export const education: Credential[] = [
   {
     title: 'Bachelor of Science in Software Development',
-    institution: 'Brigham Young University-Idaho',
-    date: 'February 21, 2026',
+    institution: 'Brigham Young University–Idaho',
+    date: 'Graduated: February 21, 2026',
     documentUrl: '/certificates/bachelor-software-development.pdf',
     kind: 'degree',
   },
   {
     title: 'Associate of Applied Science in Software Development',
-    institution: 'Brigham Young University-Idaho',
-    date: 'December 13, 2025',
+    institution: 'Brigham Young University–Idaho',
+    date: 'Graduated: December 13, 2025',
     documentUrl: '/certificates/associate-software-development.pdf',
     kind: 'degree',
   },
@@ -531,21 +531,21 @@ export const education: Credential[] = [
 export const certifications: Credential[] = [
   {
     title: 'Certificate in Software Development',
-    institution: 'Brigham Young University-Idaho',
+    institution: 'Brigham Young University–Idaho',
     date: 'December 13, 2025',
     documentUrl: '/certificates/certificate-software-development.pdf',
     kind: 'certificate',
   },
   {
     title: 'Certificate in Web Development',
-    institution: 'Brigham Young University-Idaho',
+    institution: 'Brigham Young University–Idaho',
     date: 'October 18, 2025',
     documentUrl: '/certificates/certificate-web-development.pdf',
     kind: 'certificate',
   },
   {
     title: 'Certificate in Web & Computer Programming',
-    institution: 'Brigham Young University-Idaho',
+    institution: 'Brigham Young University–Idaho',
     date: 'April 19, 2025',
     documentUrl: '/certificates/certificate-web-computer-programming.pdf',
     kind: 'certificate',
