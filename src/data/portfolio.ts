@@ -159,10 +159,10 @@ export const skillCategories: SkillCategory[] = [
     title: 'AI Tools',
     description: 'AI assistants used for research, copy, planning, and production.',
     skills: [
-      { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com', iconType: 'brand' },
-      { id: 'claude', name: 'Claude', url: 'https://claude.ai', iconType: 'brand' },
+      { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com', iconType: 'asset' },
+      { id: 'claude', name: 'Claude', url: 'https://claude.ai', iconType: 'asset' },
       { id: 'grok', name: 'Grok', url: 'https://grok.com', iconType: 'asset' },
-      { id: 'gemini', name: 'Gemini', url: 'https://gemini.google.com', iconType: 'brand' },
+      { id: 'gemini', name: 'Gemini', url: 'https://gemini.google.com', iconType: 'asset' },
     ],
   },
   {

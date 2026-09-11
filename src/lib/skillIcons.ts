@@ -36,9 +36,6 @@ export const brandIconMap = {
   figma: 'siFigma',
   shopify: 'siShopify',
   wix: 'siWix',
-  chatgpt: 'siOpenai',
-  claude: 'siClaude',
-  gemini: 'siGooglegemini',
   metabusiness: 'siMeta',
 } as const satisfies Record<string, SimpleIconKey>;
 
@@ -61,7 +58,10 @@ export const assetIconMap = {
   powershell: '/skills/powershell.svg',
   mysqlcolor: '/skills/mysql.svg',
   klaviyo: '/skills/klaviyo.png',
-  grok: '/skills/grok.svg',
+  chatgpt: '/skills/chatgpt.svg',
+  claude: '/skills/claude.svg',
+  grok: '/skills/grok.png',
+  gemini: '/skills/gemini.svg',
 } as const satisfies Record<string, string>;
 
 export type BrandIconId = keyof typeof brandIconMap;
