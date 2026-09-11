@@ -26,7 +26,7 @@ export const site = {
     'Use development and technical troubleshooting as an execution advantage — not as the only focus of the work.',
   ],
   stats: [
-    { label: 'Marketing work', value: 'Full library', context: 'Research, social, email, automation, SOPs, funnels, lead magnets, websites, and analytics.' },
+    { label: 'Marketing work', value: 'Full library', context: 'Websites, funnels, social media & graphics, lead magnets, and automation & workflows.' },
     { label: 'Browse two ways', value: 'Type + brand', context: 'Every work type stays distinct while related work remains connected by brand.' },
     { label: 'Technical edge', value: 'Build + troubleshoot', context: 'Web implementation, responsive QA, deployment, and workflow debugging support the marketing work.' },
     { label: 'Availability', value: 'Open now', context: 'Remote marketing, automation, funnel, growth, and web-system roles.' },
@@ -266,9 +266,10 @@ export const projects: Project[] = [
     outcome:
       'A 15-piece sample system: site, funnel, social, and automation — not a pile of disconnected assets.',
     relatedLinks: [
-      { label: 'Funnel pages', href: '/marketing/funnels#cafe-expert' },
-      { label: 'Social content', href: '/marketing/social#cafe-expert' },
-      { label: 'Email nurture', href: '/marketing/email#cafe-expert' },
+      { label: 'Website', href: '/marketing/websites#cafe-expert' },
+      { label: 'Funnel', href: '/marketing/funnels#cafe-expert' },
+      { label: 'Social media', href: '/marketing/social#cafe-expert' },
+      { label: 'Automation', href: '/marketing/automation#cafe-expert' },
     ],
     description:
       'Sample client system for a cafe-profit coaching brand. Website pages, lead-magnet funnel, booking flow, vertical guide mockup, social posts, and email nurture — one brand system instead of disconnected assets.',
@@ -319,13 +320,11 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/thayl0w/landing',
     category: 'funnel',
     relatedLinks: [
+      { label: 'Website', href: '/marketing/websites/piw' },
+      { label: 'Funnel', href: '/marketing/funnels/piw' },
       { label: 'Social media', href: '/marketing/social/piw' },
       { label: 'Lead magnet', href: '/marketing/lead-magnets/piw' },
-      { label: 'Funnel', href: '/marketing/funnels/piw' },
-      { label: 'Website', href: '/marketing/websites/piw' },
-      { label: 'Email', href: '/marketing/email/piw' },
       { label: 'Automation', href: '/marketing/automation/piw' },
-      { label: 'Research', href: '/marketing/research/piw' },
     ],
   },
   {
