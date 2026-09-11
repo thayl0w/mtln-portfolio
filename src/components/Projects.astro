@@ -1,7 +1,7 @@
 ---
 import { projectGroups, projects } from '../data/portfolio';
 import ProjectCard from './ProjectCard.astro';
-const technicalProjects=projects.filter((project)=>project.category==='funnel'||project.category==='app');
+const technicalProjects=projects.filter((project)=>project.category==='website'||project.category==='funnel'||project.category==='app');
 const groups=projectGroups.map((group)=>({...group,items:technicalProjects.filter((project)=>project.category===group.id)})).filter((group)=>group.items.length>0);
 ---
 <section id="projects" class="section-fade py-12 md:py-16"><div class="section-container"><div class="mb-8 max-w-3xl space-y-3"><p class="section-eyebrow">Technical execution</p><h2 class="section-heading">Web & technical builds</h2><p class="section-subheading">Development is an execution advantage in my work: responsive interfaces, funnel builds, web applications, debugging, and deployment. The marketing library above remains the primary body of work.</p></div><div class="mb-10 flex flex-wrap gap-2" aria-label="Jump to technical project type">{groups.map((group)=><a href={`#${group.id}-projects`} class="btn-outline !rounded-full !px-3.5 !py-1.5 text-sm">{group.label}</a>)}</div><div class="space-y-14">{groups.map((group)=>(<div id={`${group.id}-projects`} class="scroll-mt-28"><div class="mb-6 max-w-3xl"><h3 class="font-serif text-2xl font-semibold text-foreground">{group.label}</h3><p class="mt-2 text-sm text-muted">{group.description}</p></div><div class="grid gap-6 sm:grid-cols-2">{group.items.map((project)=><ProjectCard project={project}/>)}</div></div>))}</div></div></section>

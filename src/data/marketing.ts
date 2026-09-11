@@ -16,7 +16,7 @@ export interface MarketingAsset {
 export interface MarketingDeliverable {
   id: string;
   title: string;
-  format: 'PDF' | 'DOCX' | 'Gallery';
+  format: 'PDF' | 'DOCX' | 'Gallery' | 'Live';
   summary: string;
   tags: string[];
   href?: string;
@@ -100,6 +100,16 @@ export const marketingCategories: MarketingCategory[] = [
         id: 'piw',
         brand: 'Pristine Image Wellness / Med Spa',
         deliverables: [
+          {
+            id: 'piw-medspa-live',
+            title: 'Pristine Image Med Spa — Live Website',
+            format: 'Live',
+            summary: 'Live client website for treatments, social proof, and free-consultation booking.',
+            tags: ['Website', 'Live'],
+            href: 'https://www.pristineimagemedspa.com/',
+            preview: '/projects/piw/medspa-brand.png',
+            kind: 'document',
+          },
           {
             id: 'piw-website',
             title: 'Wellness Website Pages',

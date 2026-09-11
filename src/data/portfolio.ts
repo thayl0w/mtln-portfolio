@@ -201,7 +201,7 @@ export const skillCategories: SkillCategory[] = [
   }
 ];
 
-export type ProjectCategory = 'client' | 'research' | 'ops' | 'funnel' | 'app';
+export type ProjectCategory = 'client' | 'research' | 'ops' | 'funnel' | 'app' | 'website';
 
 export interface ProjectGalleryItem {
   src: string;
@@ -247,11 +247,38 @@ export const projectGroups: {
   label: string;
   description: string;
 }[] = [
+  { id: 'website', label: 'Live websites', description: 'Published client websites live on their own domains.' },
   { id: 'funnel', label: 'Conversion & funnel builds', description: 'Published landing pages and multi-step conversion experiences that demonstrate the technical execution behind marketing ideas.' },
   { id: 'app', label: 'Web applications', description: 'Application projects that demonstrate frontend, data, responsive UI, and deployment skills as a supporting technical capability.' },
 ];
 
 export const projects: Project[] = [
+  {
+    id: 'piw-medspa',
+    title: 'Pristine Image Med Spa',
+    featured: false,
+    role: 'Live client website',
+    challenge:
+      'The med spa needed a public site that could present treatments clearly and send busy professionals into a free consultation.',
+    built:
+      'A conversion-focused website covering body sculpting, laser, medical weight loss, and esthetics, with booking into the consultation calendar.',
+    contribution:
+      'Shipped the live med spa site on the client domain, connected to consultation booking.',
+    outcome:
+      'Live at pristineimagemedspa.com with service pages, social proof, and a free-consultation path.',
+    description:
+      'Live client website for Pristine Image Med Spa — treatments, social proof, and free-consultation booking on the client domain.',
+    image: '/projects/piw/medspa-brand.png',
+    tech: ['Systeme.io', 'Website', 'Booking'],
+    liveUrl: 'https://www.pristineimagemedspa.com/',
+    githubUrl: '#',
+    category: 'website',
+    relatedLinks: [
+      { label: 'Website work', href: '/marketing/websites/piw' },
+      { label: 'Funnel', href: '/marketing/funnels/piw' },
+      { label: 'Social media', href: '/marketing/social/piw' },
+    ],
+  },
   {
     id: 'cafe-expert',
     title: 'The Cafe Expert — Website, Funnel & Content',
@@ -320,6 +347,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/thayl0w/landing',
     category: 'funnel',
     relatedLinks: [
+      { label: 'Live website', href: 'https://www.pristineimagemedspa.com/' },
       { label: 'Website', href: '/marketing/websites/piw' },
       { label: 'Funnel', href: '/marketing/funnels/piw' },
       { label: 'Social media', href: '/marketing/social/piw' },

@@ -40,6 +40,7 @@ const initialVisible = 999; // Complete gallery — no arbitrary social-media li
             {documents.map((item) => {
               const isPdf = Boolean(item.href && item.href.toLowerCase().endsWith('.pdf'));
               const isDoc = Boolean(item.href && /\.docx?$/i.test(item.href));
+              const isLive = Boolean(item.href && /^https?:\/\//i.test(item.href) && !isPdf && !isDoc);
               return (
                 <article class="card-surface flex flex-col overflow-hidden md:flex-row">
                   {item.preview ? (
@@ -64,7 +65,16 @@ const initialVisible = 999; // Complete gallery — no arbitrary social-media li
                         <span class="rounded-full border border-border px-2.5 py-1 text-xs text-muted">{tag}</span>
                       ))}
                     </div>
-                    {(isPdf || isDoc) && item.href ? (
+                    {isLive && item.href ? (
+                      <a
+                        href={item.href}
+                        class="btn-outline mt-5 w-fit"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Open live site
+                      </a>
+                    ) : (isPdf || isDoc) && item.href ? (
                       <button
                         type="button"
                         class="btn-outline mt-5 w-fit"

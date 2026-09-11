@@ -17,6 +17,7 @@ const typeLabels: Record<string, string> = {
   ops: 'SOP / operations',
   funnel: 'Live funnel',
   app: 'Web app',
+  website: 'Live website',
 };
 ---
 
@@ -73,7 +74,7 @@ const typeLabels: Record<string, string> = {
       ) : null}
       {hasLive ? (
         <a href={project.liveUrl} class="btn-outline" target="_blank" rel="noopener noreferrer">
-          Live Demo
+          {project.category === 'website' ? 'Visit site' : 'Live Demo'}
         </a>
       ) : null}
       {project.githubUrl && project.githubUrl !== '#' ? (
